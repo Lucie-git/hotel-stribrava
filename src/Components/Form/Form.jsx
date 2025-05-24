@@ -1,20 +1,31 @@
 import { useState } from 'react';
+import dayjs from 'dayjs';
 import './style.css';
 
-export const Form = () => {
+export const Form = ({ selectedRoom }) => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-  const [amount, setAmount] = useState('');
-  const [meal, setMeal] = useState('');
+  const [amount, setAmount] = useState('1');
+  const [meal, setMeal] = useState('nothing');
   const [pet, setPet] = useState(false);
   const [childBed, setChildBed] = useState(false);
   const [wheelchair, setWheelchair] = useState(false);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  {
-    console.log(from, to, amount, meal, pet, childBed, wheelchair, email, phone);
-  }
+  const mealPrices = {
+    nothing: 0,
+    breakfast: 250,
+    halfBoard: 400,
+    fullBoard: 700,
+  };
+
+  const stayDuration = dayjs(to).diff(dayjs(from), 'day') || 1;
+  let tentativePrice =
+    ((selectedRoom && stayDuration * selectedRoom.price) + mealPrices[meal]) * amount;
+  let petPrice = pet && selectedRoom.price / 4;
+  let childBedPrice = childBed && selectedRoom.price / 2;
+  const finalPrice = tentativePrice + petPrice + childBedPrice;
 
   return (
     <>
@@ -27,6 +38,7 @@ export const Form = () => {
             id="field1"
             className="field-input"
             type="date"
+            value={from}
             onChange={(e) => {
               setFrom(e.target.value);
             }}
@@ -38,6 +50,7 @@ export const Form = () => {
             id="field2"
             className="field-input"
             type="date"
+            value={to}
             onChange={(e) => {
               setTo(e.target.value);
             }}
@@ -50,6 +63,7 @@ export const Form = () => {
             className="field-input"
             type="number"
             min="0"
+            value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
             }}
@@ -60,14 +74,15 @@ export const Form = () => {
           <select
             id="select"
             className="field-input"
+            value={meal}
             onChange={(e) => {
               setMeal(e.target.value);
             }}
           >
-            <option>Žádné</option>
-            <option>Snídaně</option>
-            <option>Polopenze</option>
-            <option>Plná penze</option>
+            <option value="nothing">Žádné</option>
+            <option value="breakfast">Snídaně</option>
+            <option value="halfBoard"> Polopenze</option>
+            <option value="fullBoard">Plná penze</option>
           </select>
 
           <label htmlFor="check1" className="field-label">
@@ -77,6 +92,7 @@ export const Form = () => {
             id="check1"
             className="field-input"
             type="checkbox"
+            value={pet}
             onChange={(e) => {
               setPet(e.target.checked);
             }}
@@ -88,6 +104,7 @@ export const Form = () => {
             id="check2"
             className="field-input"
             type="checkbox"
+            value={childBed}
             onChange={(e) => {
               setChildBed(e.target.checked);
             }}
@@ -99,6 +116,7 @@ export const Form = () => {
             id="check3"
             className="field-input"
             type="checkbox"
+            value={wheelchair}
             onChange={(e) => {
               setWheelchair(e.target.checked);
             }}
@@ -110,6 +128,7 @@ export const Form = () => {
             id="field4"
             className="field-input"
             type="email"
+            value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -121,12 +140,13 @@ export const Form = () => {
             id="field5"
             className="field-input"
             type="tel"
+            value={phone}
             onChange={(e) => {
               setPhone(e.target.value);
             }}
           />
         </div>
-        <h3>Celková cena za pobyt: 0 Kč</h3>
+        <h3>Celková cena za pobyt: {finalPrice} Kč</h3>
         <button className="wide">Odeslat poptávku</button>
       </form>
     </>

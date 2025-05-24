@@ -1,4 +1,5 @@
 import './style.css';
+import mapa from '../../img/mapa.png';
 
 export const Footer = () => {
   return (
@@ -15,7 +16,7 @@ export const Footer = () => {
               <a href="mailto:recepce@hotelstribrava.cz">recepce@hotelstribrava.cz</a>
             </p>
           </div>
-          <img src="img/mapa.png" />
+          <img src={mapa} />
         </div>
       </section>
     </>

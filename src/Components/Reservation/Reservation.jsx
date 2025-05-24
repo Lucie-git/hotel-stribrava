@@ -2,7 +2,6 @@ import './style.css';
 import { Form } from '../Form/Form';
 
 export const Reservation = ({ selectedRoom }) => {
-  console.log(selectedRoom);
   return (
     <>
       <section className="light">
@@ -17,7 +16,7 @@ export const Reservation = ({ selectedRoom }) => {
               <div>{selectedRoom && selectedRoom.description}</div>
             </div>
             <div className="column">
-              <Form />
+              <Form selectedRoom={selectedRoom} />
             </div>
           </div>
         </div>
