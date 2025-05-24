@@ -11,12 +11,11 @@ export const Footer = () => {
             <p>
               Ke kamenné lávce 12 <br />
               317 24, Libnice nad Stříbravou <br />
-              <p>
-                <a href="mailto:recepce@hotelstribrava.cz">recepce@hotelstribrava.cz</a>
-              </p>
+              <br />
+              <a href="mailto:recepce@hotelstribrava.cz">recepce@hotelstribrava.cz</a>
             </p>
           </div>
-          <img src="img/image1.svg" />
+          <img src="img/mapa.png" />
         </div>
       </section>
     </>

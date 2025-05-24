@@ -1,5 +1,6 @@
 import './style.css';
 import { Form } from '../Form/Form';
+import { Room } from '../Room/Room';
 
 export const Reservation = () => {
   return (
@@ -8,10 +9,7 @@ export const Reservation = () => {
         <div className="container">
           <h2>Název pokoje, ... na osobu za noc</h2>
           <div className="columns-2">
-            <div className="column">
-              <img src="img/image1.svg" />
-              <p>Popis pokoje</p>
-            </div>
+            <Room />
             <div className="column">
               <Form />
             </div>
