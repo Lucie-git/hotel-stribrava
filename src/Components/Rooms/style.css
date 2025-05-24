@@ -5,10 +5,3 @@
   overflow-y: hidden;
   padding: 1rem 0;
 }
-
-
-.columns-2 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}

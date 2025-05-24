@@ -6,8 +6,8 @@ export const Rooms = () => {
     <>
       <section className="dark">
         <div className="container">
-          <h2>Heading</h2>
-          <p>Quas odio quidem, enim nihil unde quia temporibus vitae in ab.</p>
+          <h2>Naše pokoje</h2>
+          <p>Vyberte si, který z naších pokojů je pro vás ten pravý.</p>
           <div className="cards-row">
             <Room />
             <Room />
