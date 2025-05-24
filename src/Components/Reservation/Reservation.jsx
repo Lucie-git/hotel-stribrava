@@ -1,15 +1,21 @@
 import './style.css';
 import { Form } from '../Form/Form';
-import { Room } from '../Room/Room';
 
-export const Reservation = () => {
+export const Reservation = ({ selectedRoom }) => {
+  console.log(selectedRoom);
   return (
     <>
       <section className="light">
         <div className="container">
-          <h2>Název pokoje, ... na osobu za noc</h2>
+          <h2>
+            {selectedRoom && selectedRoom.name}, {selectedRoom && selectedRoom.price} Kč na osobu za
+            noc
+          </h2>
           <div className="columns-2">
-            <Room />
+            <div>
+              <img src={selectedRoom && selectedRoom.img} alt="Zvolený pokoj" />
+              <div>{selectedRoom && selectedRoom.description}</div>
+            </div>
             <div className="column">
               <Form />
             </div>

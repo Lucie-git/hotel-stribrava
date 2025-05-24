@@ -1,21 +1,8 @@
-import './style.css';
+import { useState } from 'react';
 import { Room } from '../Room/Room';
-import { useEffect, useState } from 'react';
+import './style.css';
 
-export const Rooms = () => {
-  const [allRooms, setAllRooms] = useState([]);
-
-  useEffect(() => {
-    const fetchRooms = async () => {
-      const response = await fetch('http://localhost:4000/api/rooms');
-      const responseData = await response.json();
-      const roomsData = responseData.data;
-      setAllRooms(roomsData);
-    };
-
-    fetchRooms();
-  }, []);
-
+export const Rooms = ({ allRooms, onRoomSelect }) => {
   return (
     <>
       <section className="dark">
@@ -27,10 +14,12 @@ export const Rooms = () => {
               return (
                 <Room
                   key={room.id}
+                  id={room.id}
                   name={room.name}
                   price={room.price}
                   img={room.img}
                   description={room.description}
+                  onRoomSelect={onRoomSelect}
                 />
               );
             })}
